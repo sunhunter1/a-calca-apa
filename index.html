@@ -1,0 +1,1050 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>A călca apa</title>
+<meta name="description" content="Eseu interactiv despre cum paisprezece limbi numesc și moralizează același gest: statul vertical în apă. Alege o limbă și vezi unde își mută metafora stagnării și pe cine vinovățește.">
+<meta property="og:title" content="A călca apa">
+<meta property="og:description" content="Paisprezece limbi descriu aceeași mișcare a picioarelor și nu vorbesc aproape niciodată despre același lucru. Eseu interactiv cu derulare.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Hanken+Grotesk:wght@400..700&family=Noto+Serif:ital,wght@0,400..700;1,400..600&family=Noto+Naskh+Arabic:wght@400..700&family=Noto+Serif+Hebrew:wght@400..700&family=Noto+Serif+SC:wght@400..700&family=Noto+Serif+JP:wght@400..700&family=Noto+Serif+KR:wght@400..700&display=swap">
+<style>
+/* Concept: a water column you scroll down through. Surface aqua at the top, abyss at the bottom.
+   Three fixed place colours used everywhere: APA = teal, USCATUL = amber, MAȘINA = terracotta.
+   A fourth colour (glow) is reserved for the moments where stillness becomes a value. */
+:root{
+  --d0:#17555d; --d1:#0f3f4d; --d2:#0a2a38; --d3:#04121b;
+  --ink:#e8f4f2; --ink2:#b4d0d1; --line:rgba(232,244,242,.22);
+  --card:rgba(3,16,24,.42); --card-hi:rgba(3,16,24,.66);
+  --paper:#eef8f6;
+  --water:#58cdc1; --water-t:rgba(88,205,193,.2);
+  --land:#eab044;  --land-t:rgba(234,176,68,.2);
+  --mach:#ef8157;  --mach-t:rgba(239,129,87,.2);
+  --glow:#ffd98a;  --glow-t:rgba(255,217,138,.24);
+  --mud:#5d3526;
+  --neu-t:rgba(232,244,242,.1);
+  --focus:#ffd98a;
+  --serif:"Newsreader","Noto Serif",Georgia,"Times New Roman",serif;
+  --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --d0:#e4f5f2; --d1:#c7e6e4; --d2:#aed6d8; --d3:#9ccbd0;
+    --ink:#0a2a33; --ink2:#1f4651; --line:rgba(10,42,51,.28);
+    --card:rgba(255,255,255,.55); --card-hi:rgba(255,255,255,.8);
+    --paper:#f4fbf9;
+    --water:#0b5f5a; --water-t:rgba(11,95,90,.16);
+    --land:#7a4e00;  --land-t:rgba(176,120,10,.22);
+    --mach:#9a3412;  --mach-t:rgba(176,64,28,.16);
+    --glow:#9a6208;  --glow-t:rgba(224,160,40,.3);
+    --mud:#b98d72;
+    --neu-t:rgba(10,42,51,.08);
+    --focus:#0a2a33;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --d0:#e4f5f2; --d1:#c7e6e4; --d2:#aed6d8; --d3:#9ccbd0;
+  --ink:#0a2a33; --ink2:#1f4651; --line:rgba(10,42,51,.28);
+  --card:rgba(255,255,255,.55); --card-hi:rgba(255,255,255,.8);
+  --paper:#f4fbf9;
+  --water:#0b5f5a; --water-t:rgba(11,95,90,.16);
+  --land:#7a4e00;  --land-t:rgba(176,120,10,.22);
+  --mach:#9a3412;  --mach-t:rgba(176,64,28,.16);
+  --glow:#9a6208;  --glow-t:rgba(224,160,40,.3);
+  --mud:#b98d72;
+  --neu-t:rgba(10,42,51,.08);
+  --focus:#0a2a33;
+  color-scheme:light;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{
+  background-color:var(--d0);
+  background-image:linear-gradient(180deg,var(--d0) 0,var(--d1) 28%,var(--d2) 62%,var(--d3) 100%);
+  color:var(--ink);
+  font:400 1.125rem/1.66 var(--serif);
+  font-optical-sizing:auto;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+:lang(ru){font-family:"Noto Serif","Newsreader",Georgia,serif}
+:lang(ar),:lang(fa){font-family:"Noto Naskh Arabic","Newsreader",serif}
+:lang(he){font-family:"Noto Serif Hebrew","Newsreader",serif}
+:lang(zh){font-family:"Noto Serif SC","Songti SC","SimSun",serif}
+:lang(ja){font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif}
+:lang(ko){font-family:"Noto Serif KR","Batang",serif}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.wrap{width:100%;max-width:1112px;margin-inline:auto;padding-inline:16px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-60px;background:var(--paper);color:#0a2a33;padding:10px 14px;border-radius:8px;z-index:100;font:600 .9rem var(--sans)}
+.skip:focus{top:8px}
+
+/* ---------- type helpers ---------- */
+.kicker{font:600 .76rem/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ink2);flex:none}
+.dot.apa{background:var(--water)} .dot.uscat{background:var(--land)} .dot.masina{background:var(--mach)} .dot.valoare{background:var(--glow)}
+h2{font:500 clamp(1.9rem,5.2vw,3.1rem)/1.12 var(--serif);letter-spacing:-.015em;margin:0 0 20px;text-wrap:balance}
+h3{font:600 1.45rem/1.2 var(--serif);margin:0 0 10px;text-wrap:balance}
+h4{font:600 .72rem/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin:0 0 8px}
+p{margin:0 0 1em}
+.measure{max-width:66ch}
+.x{unicode-bidi:isolate}
+.tr{font-style:italic;color:var(--ink2)}
+.tl{display:inline-block;background:var(--neu-t);border-radius:6px;padding:0 8px;font-size:.92em;line-height:1.5;font-style:normal;font-family:var(--serif)}
+.cf{display:inline-block;font:600 .64rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;border:1px dashed var(--ink2);color:var(--ink2);border-radius:99px;padding:3px 7px;vertical-align:middle;margin-inline-start:6px;white-space:nowrap}
+.cap{font-style:italic;color:var(--ink2);text-align:center;margin:22px auto 0;max-width:60ch}
+
+/* ---------- top bar ---------- */
+.prog{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--ink);transform-origin:0 50%;transform:scaleX(0);z-index:60;opacity:.7}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--d1) 82%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:12px;min-height:52px}
+.brand{font:italic 600 1.05rem var(--serif);text-decoration:none;white-space:nowrap}
+.topbar nav{display:flex;gap:2px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+.topbar nav::-webkit-scrollbar{display:none}
+.topbar nav a{font:600 .74rem var(--sans);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 10px;white-space:nowrap;color:var(--ink2);border-radius:6px}
+.topbar nav a:hover{color:var(--ink)}
+.theme-btn{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer;display:grid;place-items:center}
+.theme-btn svg{width:20px;height:20px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding-block:56px 0;background:radial-gradient(70% 90% at 78% -10%,rgba(255,255,255,.16),transparent 70%)}
+.title{font:500 clamp(3.4rem,15vw,9.5rem)/.92 var(--serif);letter-spacing:-.035em;margin:0 0 18px;text-wrap:balance}
+.title em{font-style:italic;font-weight:400}
+.sub{font:italic 400 clamp(1.25rem,3.4vw,1.9rem)/1.3 var(--serif);color:var(--ink2);margin:0 0 30px;max-width:30ch}
+.titles{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-wrap:wrap;gap:4px 6px}
+.titles li{display:contents}
+.titles a{display:inline-block;padding:8px 14px;border:1px solid var(--line);border-radius:99px;text-decoration:none;font-size:1.15rem;line-height:1.3;background:var(--neu-t);transition:background .2s,border-color .2s}
+.titles a:hover{background:var(--card-hi);border-color:var(--ink)}
+.titles-note{font:500 .78rem var(--sans);color:var(--ink2);margin:10px 0 0;letter-spacing:.02em}
+.surface{display:block;width:100%;height:76px;margin-top:26px}
+.surface path{fill:none;stroke-width:2.4;stroke-linecap:round}
+.surface .a{stroke:var(--ink);opacity:.55;animation:wv2 7s linear infinite}
+.surface .b{stroke:var(--water);opacity:.8;animation:wv2 5s linear infinite reverse}
+.surface .c{stroke:var(--ink2);opacity:.4;animation:wv2 9s linear infinite}
+.openpar{font-size:clamp(1.2rem,2.5vw,1.45rem);line-height:1.6;font-style:italic;max-width:62ch;padding-block:34px 24px}
+@keyframes wv2{to{transform:translateX(-120px)}}
+
+/* ---------- sections ---------- */
+.sec{padding-block:72px 24px}
+.sec-head{max-width:760px;margin-bottom:34px}
+
+/* illustrations */
+.illu{display:block;width:100%;height:auto;max-width:100%}
+.illu .s{fill:none;stroke:var(--ink);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.illu .thin{stroke-width:2}
+.illu .fi{fill:var(--ink)}
+.illu .fw{fill:var(--water-t)}
+.illu .wl{fill:none;stroke:var(--water);stroke-width:3;stroke-linecap:round}
+.illu .gl{stroke:var(--ink2);stroke-width:2;fill:none}
+.illu .ht{stroke:var(--line);stroke-width:1.6;fill:none}
+.illu .sw{fill:none;stroke:var(--water);stroke-width:2.5}
+.illu .rg{fill:none;stroke:var(--water);stroke-width:9}
+.illu .rg2{fill:none;stroke:var(--paper);stroke-width:9;stroke-dasharray:13 13.4}
+.illu .dsh{fill:none;stroke:var(--ink2);stroke-width:2.4;stroke-dasharray:5 6}
+.illu .cg{fill:none;stroke:var(--land);stroke-width:7;stroke-dasharray:6.7 6.7}
+.illu .cg2{fill:none;stroke:var(--land);stroke-width:3.2}
+.illu .mud{fill:var(--mud);stroke:var(--mach);stroke-width:3;stroke-linejoin:round}
+.illu .drop{fill:var(--mach)}
+.illu .tread{fill:none;stroke:var(--ink2);stroke-width:4;stroke-dasharray:4 5}
+.illu .hull{fill:var(--water-t)}
+.illu .sailf{fill:var(--water);opacity:.9;stroke:none}
+.illu .cur{fill:none;stroke:var(--water);stroke-width:2.6;stroke-linecap:round}
+.illu .bowl{fill:var(--neu-t);stroke:var(--ink);stroke-width:3.2;stroke-linejoin:round}
+.illu .bw{fill:var(--water-t);stroke:var(--water);stroke-width:2.6}
+.illu .wd{fill:var(--water)}
+.illu .sand{fill:var(--ink);opacity:.85}
+.illu .gw{fill:var(--glow-t);stroke:none}
+.illu .gs{fill:none;stroke:var(--glow);stroke-width:3;stroke-linecap:round}
+.illu .gf{fill:var(--glow)}
+.illu .trk{fill:none;stroke:var(--ink2);stroke-width:2.2}
+.illu *{animation-play-state:paused}
+.illu.on *{animation-play-state:running}
+.illu .wvg{animation:wv 3.4s linear infinite}
+.illu .wvg.fast{animation-duration:1.5s}
+.illu .press{animation:press 2.6s ease-in-out infinite}
+.illu .rip{transform-box:view-box;animation:rip 2.6s ease-out infinite;opacity:0}
+.illu .bob{animation:bob 3.2s ease-in-out infinite}
+.illu .lgA{animation:legA 1.6s ease-in-out infinite}
+.illu .lgB{animation:legB 1.6s ease-in-out infinite}
+.illu .drift{animation:drift 3.4s ease-in-out infinite}
+.illu .spin{animation:spin 4s linear infinite}
+.illu .spin.fast{animation-duration:.55s}
+.illu .flapL{animation:flap .7s ease-in-out infinite}
+.illu .flapR{animation:flap .7s ease-in-out infinite reverse}
+.illu .rise{animation:rise 7s ease-in-out infinite}
+.illu .sandT{animation:sandT 5s linear infinite}
+.illu .sandB{animation:sandB 5s linear infinite}
+.illu .thread{stroke-dasharray:2 4;animation:dash 1s linear infinite}
+.illu .stepA{animation:lift 1.2s ease-in-out infinite}
+.illu .stepB{animation:liftB 1.2s ease-in-out infinite}
+.illu .armA{animation:swing 1.2s ease-in-out infinite}
+.illu .armB{animation:swing 1.2s ease-in-out infinite reverse}
+.illu .cogs{animation:spin 14s linear infinite}
+.illu .cogs.rev{animation-direction:reverse;animation-duration:9s}
+.illu .puff{animation:puff 1.2s ease-out infinite;opacity:0}
+.illu .pound{animation:pound 1.3s ease-in infinite}
+.illu .sp1{animation:sp1 1.3s ease-out infinite;opacity:0}
+.illu .sp2{animation:sp2 1.3s ease-out infinite;opacity:0}
+.illu .sp3{animation:sp3 1.3s ease-out infinite;opacity:0}
+.illu .rockA{animation:rock 2.2s ease-in-out infinite}
+.illu .rockB{animation:rock 2.2s ease-in-out infinite reverse}
+.illu .strive{animation:strive 4s ease-in-out infinite}
+.illu .sail{animation:sail 6s ease-in-out infinite}
+.illu .oar{animation:flap 1s ease-in-out infinite}
+.illu .flowL{animation:flowL 2.2s linear infinite}
+.illu .flowR{animation:flowR 2.2s linear infinite}
+.illu .d1{animation:d1 .9s ease-out infinite;opacity:0}
+.illu .d2{animation:d2 .9s ease-out .3s infinite;opacity:0}
+.illu .d3{animation:d3 .9s ease-out .6s infinite;opacity:0}
+.illu .spark{animation:pulse 2.4s ease-in-out infinite}
+.illu .sink{animation:sink 7s ease-in-out infinite}
+.illu .bub{animation:bub 4s ease-in infinite;opacity:0}
+.illu .glowp{animation:glowp 3s ease-in-out infinite}
+.illu .walker{animation:walk 7s ease-in-out infinite}
+.illu .road{stroke-dasharray:8 8;animation:road 7s linear infinite}
+.illu .halo{animation:halo 7s ease-in-out infinite}
+@keyframes wv{to{transform:translateX(50px)}}
+@keyframes press{0%,100%{transform:translateY(0)}45%{transform:translateY(12px)}}
+@keyframes rip{0%,38%{transform:scale(.4);opacity:0}48%{opacity:.9}100%{transform:scale(2.6);opacity:0}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes legA{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
+@keyframes legB{0%,100%{transform:rotate(10deg)}50%{transform:rotate(-10deg)}}
+@keyframes drift{0%,100%{transform:translateX(0)}60%{transform:translateX(14px)}80%{transform:translateX(3px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes flap{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(16deg)}}
+@keyframes rise{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes sandT{from{transform:scaleY(1)}to{transform:scaleY(.06)}}
+@keyframes sandB{from{transform:scaleY(.06)}to{transform:scaleY(1)}}
+@keyframes dash{to{stroke-dashoffset:-12}}
+@keyframes lift{0%,100%{transform:rotate(0)}50%{transform:rotate(-36deg)}}
+@keyframes liftB{0%,100%{transform:rotate(-36deg)}50%{transform:rotate(0)}}
+@keyframes swing{0%,100%{transform:rotate(20deg)}50%{transform:rotate(-20deg)}}
+@keyframes puff{0%,40%{transform:translateY(0) scale(.5);opacity:0}55%{opacity:.7}100%{transform:translateY(-10px) scale(1.6);opacity:0}}
+@keyframes pound{0%,100%{transform:translateY(-16px)}55%{transform:translateY(0)}}
+@keyframes sp1{0%,50%{transform:translate(0,0);opacity:0}58%{opacity:1}100%{transform:translate(-26px,-30px);opacity:0}}
+@keyframes sp2{0%,50%{transform:translate(0,0);opacity:0}58%{opacity:1}100%{transform:translate(0,-38px);opacity:0}}
+@keyframes sp3{0%,50%{transform:translate(0,0);opacity:0}58%{opacity:1}100%{transform:translate(26px,-30px);opacity:0}}
+@keyframes rock{0%,100%{transform:rotate(-2.2deg)}50%{transform:rotate(2.2deg)}}
+@keyframes strive{0%{transform:translateX(0)}35%{transform:translateX(16px)}70%{transform:translateX(-8px)}100%{transform:translateX(0)}}
+@keyframes sail{0%,100%{transform:translateX(-10px) rotate(-1deg)}50%{transform:translateX(10px) rotate(1deg)}}
+@keyframes flowL{from{transform:translateX(0);opacity:0}25%{opacity:.9}to{transform:translateX(-50px);opacity:0}}
+@keyframes flowR{from{transform:translateX(0);opacity:0}25%{opacity:.9}to{transform:translateX(50px);opacity:0}}
+@keyframes d1{0%{transform:translate(0,0);opacity:0}15%{opacity:1}100%{transform:translate(-34px,-30px);opacity:0}}
+@keyframes d2{0%{transform:translate(0,0);opacity:0}15%{opacity:1}100%{transform:translate(-52px,-16px);opacity:0}}
+@keyframes d3{0%{transform:translate(0,0);opacity:0}15%{opacity:1}100%{transform:translate(-22px,-44px);opacity:0}}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes sink{0%,8%{transform:translateY(0);opacity:1}80%{transform:translateY(62px);opacity:.15}100%{transform:translateY(62px);opacity:0}}
+@keyframes bub{0%{transform:translateY(0);opacity:0}20%{opacity:.9}100%{transform:translateY(-70px);opacity:0}}
+@keyframes glowp{0%,100%{transform:scale(.8);opacity:.5}50%{transform:scale(1.25);opacity:1}}
+@keyframes walk{0%{transform:translateX(0)}58%,100%{transform:translateX(88px)}}
+@keyframes road{0%{stroke-dashoffset:0}58%,100%{stroke-dashoffset:-60}}
+@keyframes halo{0%,56%{opacity:.15;transform:scale(.9)}75%{opacity:1;transform:scale(1.15)}100%{opacity:.8;transform:scale(1)}}
+
+/* tokens */
+.toks{display:flex;flex-wrap:wrap;gap:6px}
+.tok{display:inline-flex;flex-direction:column;align-items:center;gap:1px;padding:8px 10px 7px;min-width:76px;min-height:52px;border:1px solid var(--line);border-radius:10px;background:transparent;cursor:pointer;line-height:1.2;transition:background .15s,border-color .15s}
+.tok .e{font-size:1.15rem;line-height:1.25;white-space:nowrap}
+.tok .n{font:500 .66rem var(--sans);letter-spacing:.04em;color:var(--ink2)}
+.tok:hover{border-color:var(--ink)}
+.tok[aria-pressed="true"]{background:var(--card-hi);border-color:var(--ink);box-shadow:inset 0 -3px 0 var(--ink)}
+.xtok{display:inline-flex;align-items:center;gap:8px;padding:7px 12px 7px 8px;min-height:44px;border:1px solid var(--line);border-radius:99px;background:transparent;cursor:pointer;font-size:1.02rem;line-height:1.25;text-align:start;transition:background .15s,border-color .15s}
+.xtok b{font:700 .66rem var(--sans);letter-spacing:.06em;background:var(--ink);color:var(--d2);border-radius:99px;padding:3px 7px;flex:none}
+:root[data-theme="light"] .xtok b{color:#f4fbf9}
+.xtok:hover{border-color:var(--ink)}
+.xtok[aria-pressed="true"]{background:var(--card-hi);border-color:var(--ink)}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .xtok b{color:#f4fbf9}}
+
+/* reader (details of chosen token) */
+.reader{margin-top:14px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);min-height:84px}
+.reader .f{font-size:1.5rem;line-height:1.3}
+.reader .row{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.reader .meta{font-size:.95rem;color:var(--ink2);margin-top:4px}
+.reader .go{margin-top:10px;font:600 .74rem var(--sans);letter-spacing:.08em;text-transform:uppercase;background:none;border:0;border-bottom:1px solid var(--ink2);color:var(--ink);padding:10px 0 2px;cursor:pointer}
+
+/* section I cards */
+.gest-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.gcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.gcard .ib{background:var(--neu-t);border-radius:12px;padding:6px 10px;margin-bottom:10px;max-width:340px;width:100%;align-self:center}
+.gcard p{font-size:1.04rem;line-height:1.62;margin-bottom:12px}
+
+/* hebrew root */
+.rootbox{margin-top:28px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:center;padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.rootbox p{margin:0 0 12px}
+.root-svg{display:block;width:100%;height:auto;max-width:440px;margin-inline:auto}
+.root-svg text{fill:var(--ink);font-family:"Noto Serif Hebrew",serif}
+.root-svg .lt{font-size:60px;font-weight:600}
+.root-svg .wd2{font-size:40px;font-weight:600}
+.root-svg .lab{font:600 11px var(--sans);letter-spacing:.06em;fill:var(--ink2);text-transform:uppercase}
+.root-svg .rt{font:italic 15px var(--serif);fill:var(--ink2)}
+.root-svg .br{fill:none;stroke:var(--glow);stroke-width:3;stroke-linecap:round}
+.root-svg .hy{fill:var(--ink2);font-size:40px}
+.root-svg.on .br{animation:drawb 1.4s ease .9s both}
+.root-svg.on .l1{animation:l1 4.8s ease-in-out both}
+.root-svg.on .l3{animation:l3 4.8s ease-in-out both}
+.root-svg.on .w1,.root-svg.on .w2{animation:fadeup 1s ease 1.8s both}
+.root-svg.on .hy{animation:hyp 4.8s ease-in-out both}
+.root-svg .br{stroke-dasharray:240}
+@keyframes drawb{from{stroke-dashoffset:240}}
+@keyframes l1{0%,18%{transform:translateX(0)}40%,70%{transform:translateX(28px)}100%{transform:translateX(0)}}
+@keyframes l3{0%,18%{transform:translateX(0)}40%,70%{transform:translateX(-28px)}100%{transform:translateX(0)}}
+@keyframes hyp{0%,18%{opacity:1}40%,70%{opacity:0}100%{opacity:1}}
+@keyframes fadeup{from{opacity:0;transform:translateY(10px)}}
+.replay{margin-top:6px;font:600 .74rem var(--sans);letter-spacing:.08em;text-transform:uppercase;background:none;border:1px solid var(--line);border-radius:99px;padding:12px 16px;min-height:44px;cursor:pointer}
+.replay:hover{border-color:var(--ink)}
+
+/* section II categories */
+.cat-list{display:flex;flex-direction:column;gap:22px}
+.crow{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:24px;padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--card);align-items:start}
+.crow .ib{background:var(--neu-t);border-radius:12px;padding:6px 8px}
+.crow p{font-size:1.06rem;margin-bottom:14px}
+.place-tag{display:inline-flex;align-items:center;gap:6px;font:600 .7rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);margin-bottom:6px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;font:600 .74rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);margin:0 0 24px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+
+/* section III scene */
+.picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px;margin-bottom:22px}
+.picker .tok{width:100%;min-width:0;padding-inline:6px}
+.scene{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--card)}
+.panel{position:relative;padding:14px 14px 8px;border-inline-end:1px solid var(--line);transition:background .35s,opacity .35s;min-width:0}
+.panel:last-child{border-inline-end:0}
+.panel header{display:flex;flex-direction:column;gap:0;margin-bottom:8px}
+.panel header .pn{font:700 .86rem var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.panel header .pb{font-style:italic;font-size:1rem;color:var(--ink2)}
+.panel.apa .pn{color:var(--water)} .panel.uscat .pn{color:var(--land)} .panel.masina .pn{color:var(--mach)}
+.panel:not(.on) .vig{opacity:.4}
+.panel.on.apa{background:var(--water-t)} .panel.on.uscat{background:var(--land-t)} .panel.on.masina{background:var(--mach-t)}
+.vig{position:relative;aspect-ratio:200/140;width:100%}
+.panel .vig{margin-top:0}
+.vig .illu,.vig .arr{position:absolute;inset:0;width:100%;height:100%}
+.vig .arr{pointer-events:none}
+.arr path{fill:none;stroke-width:3.4;stroke-linecap:round}
+.arr .ah{stroke:none}
+.arr g{animation:fadein .4s ease .9s both}
+.arr .ln{stroke-dasharray:170;animation:drawb2 .9s ease .1s both}
+@keyframes drawb2{from{stroke-dashoffset:170}}
+@keyframes fadein{from{opacity:0}}
+.apa .arr path{stroke:var(--water)} .apa .arr .ah{fill:var(--water)}
+.uscat .arr path{stroke:var(--land)} .uscat .arr .ah{fill:var(--land)}
+.masina .arr path{stroke:var(--mach)} .masina .arr .ah{fill:var(--mach)}
+.badge{min-height:48px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.badge span{display:inline-block;max-width:100%;padding:6px 14px;border-radius:99px;border:2px solid currentColor;background:var(--card-hi);font-size:1.12rem;line-height:1.3;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.18);animation:slidein .5s cubic-bezier(.2,.8,.2,1) both}
+.panel.apa .badge span{color:var(--water)} .panel.uscat .badge span{color:var(--land)} .panel.masina .badge span{color:var(--mach)}
+.badge span b{font-weight:600;color:var(--ink)}
+@keyframes slidein{from{transform:translateY(-26px) scale(.9);opacity:0}}
+.extra{margin-top:14px;display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:20px;align-items:center;padding:16px;border:1px dashed var(--ink2);border-radius:16px;background:var(--card)}
+.extra .vig{background:var(--neu-t);border-radius:12px}
+.extra .exb{font-size:1.4rem;line-height:1.3;margin-bottom:6px}
+.blame{display:inline-block;font:600 .8rem/1.4 var(--sans);letter-spacing:.02em;border-radius:99px;padding:6px 14px;border:2px solid var(--ink2);margin:0 0 10px}
+.blame.apa{border-color:var(--water);color:var(--water)} .blame.uscat{border-color:var(--land);color:var(--land)} .blame.masina{border-color:var(--mach);color:var(--mach)} .blame.valoare{border-color:var(--glow);color:var(--glow)}
+.readout{margin-top:18px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:18px}
+.rbox{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;min-width:0}
+.ent{padding:8px 0;border-top:1px solid var(--line)}
+.ent:first-of-type{border-top:0;padding-top:0}
+.ent .f{font-size:1.4rem;line-height:1.35}
+.ent .m{font-size:.94rem;color:var(--ink2);margin-top:2px}
+.ent .g{font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+.xcs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.xc{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;min-height:44px;border:1px solid var(--line);border-radius:99px;background:transparent;cursor:pointer;font-size:1.1rem;line-height:1.25;text-align:start}
+.xc i.pd{width:10px;height:10px;border-radius:50%;background:var(--ink2);flex:none}
+.xc i.pd.apa{background:var(--water)} .xc i.pd.uscat{background:var(--land)} .xc i.pd.masina{background:var(--mach)} .xc i.pd.valoare{background:var(--glow)}
+.xc[aria-pressed="true"]{background:var(--card-hi);border-color:var(--ink);box-shadow:inset 0 -3px 0 var(--ink)}
+.xc:hover{border-color:var(--ink)}
+.gist{font-style:italic;margin:8px 0 0}
+.acc{font-size:.96rem;color:var(--ink2);margin:8px 0 0}
+.acc b{font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;margin-inline-end:6px}
+.places{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.pcol{padding:16px 18px;border-radius:14px;background:var(--card);border:1px solid var(--line);transition:background .3s,border-color .3s}
+.pcol p{font-size:1.02rem;line-height:1.6}
+.pcol h3{font-size:1.2rem}
+.pcol.apa h3{color:var(--water)} .pcol.uscat h3{color:var(--land)} .pcol.masina h3{color:var(--mach)}
+.pcol.on.apa{background:var(--water-t);border-color:var(--water)} .pcol.on.uscat{background:var(--land-t);border-color:var(--land)} .pcol.on.masina{background:var(--mach-t);border-color:var(--mach)}
+.zhbox{margin-top:34px;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px;align-items:center;padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.seg{display:flex;flex-direction:column;gap:8px}
+.seg button{padding:12px 16px;min-height:48px;border:1px solid var(--line);border-radius:12px;background:transparent;cursor:pointer;text-align:start;font:600 .9rem var(--sans)}
+.seg button[aria-pressed="true"]{background:var(--card-hi);border-color:var(--ink);box-shadow:inset 0 -3px 0 var(--ink)}
+.seg button .e{display:block;font:400 1.15rem var(--serif);margin-top:2px}
+.trad-lead{margin:46px 0 18px;font-size:1.3rem;font-style:italic}
+.trad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.tcard{display:flex;flex-direction:column;gap:6px;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--card);min-width:0}
+.tcard .ib{background:var(--glow-t);border-radius:12px;padding:6px 8px;margin-bottom:8px}
+.tcard p{font-size:1.02rem;line-height:1.6;margin-bottom:12px}
+.tcard .go{align-self:flex-start;margin-top:auto;font:600 .74rem var(--sans);letter-spacing:.08em;text-transform:uppercase;background:none;border:1px solid var(--line);border-radius:99px;padding:12px 16px;min-height:44px;cursor:pointer}
+.tcard .go:hover{border-color:var(--ink)}
+.closing{max-width:70ch;margin:40px auto 0;font-size:1.2rem;text-align:center}
+
+/* table */
+.filters{display:flex;flex-direction:column;gap:14px;margin-bottom:18px}
+.frow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.frow label{font:600 .72rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);min-width:74px}
+select{font:500 1rem var(--sans);min-height:44px;padding:8px 36px 8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card-hi);color:var(--ink);max-width:100%}
+.pill{padding:8px 14px;min-height:44px;border:1px solid var(--line);border-radius:99px;background:transparent;cursor:pointer;font:600 .8rem var(--sans);display:inline-flex;align-items:center;gap:8px}
+.pill[aria-pressed="true"]{background:var(--card-hi);border-color:var(--ink);box-shadow:inset 0 -3px 0 var(--ink)}
+.pill:hover{border-color:var(--ink)}
+.count{font:500 .85rem var(--sans);color:var(--ink2);margin:0 0 10px}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+table{width:100%;border-collapse:collapse;font-size:1.02rem;line-height:1.5}
+caption{text-align:start;padding:12px 16px;font:italic 400 1rem var(--serif);color:var(--ink2)}
+th,td{padding:12px 14px;text-align:start;vertical-align:top;border-top:1px solid var(--line)}
+thead th{font:700 .7rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);border-top:0;white-space:nowrap}
+tbody th{font-weight:600;white-space:nowrap}
+td .it{display:block;margin-bottom:3px}
+td .it:last-child{margin-bottom:0}
+.hit{background:var(--glow-t);border-radius:4px;box-shadow:0 0 0 3px var(--glow-t)}
+.xtra{border:1px dashed var(--ink2);border-radius:6px;padding:0 6px;display:inline-block}
+.xtra::after{content:" · în text, nu în tabel";font:500 .66rem var(--sans);color:var(--ink2)}
+.finale{margin:64px auto 0;max-width:30em;font-size:clamp(1.55rem,4.2vw,2.5rem);line-height:1.32;font-style:italic;text-wrap:pretty;text-align:center}
+.empty{padding:24px;text-align:center;color:var(--ink2)}
+
+/* sources */
+.biblio{list-style:none;padding:0;margin:0 0 30px;display:flex;flex-direction:column;gap:10px}
+.biblio li{padding-inline-start:1.6em;text-indent:-1.6em;max-width:70ch}
+.note{max-width:70ch;padding:18px 20px;border:1px dashed var(--ink2);border-radius:14px;background:var(--card);font-style:italic}
+.share{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.share a,.share button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 18px;border-radius:99px;border:1px solid var(--ink2);background:var(--card);text-decoration:none;font:600 .86rem var(--sans);cursor:pointer;color:var(--ink)}
+.share a:hover,.share button:hover{border-color:var(--ink);background:var(--card-hi)}
+.share svg{width:18px;height:18px;fill:currentColor}
+footer{padding-block:48px 64px;color:var(--ink2);font:500 .8rem var(--sans)}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .trad,.places{grid-template-columns:1fr}
+  .readout,.rootbox,.zhbox{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  body{font-size:1.06rem}
+  .sec{padding-block:52px 12px}
+  .gest-grid{grid-template-columns:1fr}
+  .crow{grid-template-columns:1fr;padding:16px}
+  .crow .ib{max-width:300px}
+  .scene{grid-template-columns:1fr}
+  .panel{border-inline-end:0;border-bottom:1px solid var(--line);padding:12px}
+  .panel:last-child{border-bottom:0}
+  .panel:not(.on) .vig,.panel:not(.on) .badge{display:none}
+  .panel:not(.on) header{margin-bottom:4px}
+  .panel.on .vig{max-width:420px;margin-inline:auto}
+  .extra{grid-template-columns:1fr}
+  .extra .vig{max-width:300px}
+  .titles a{font-size:1.02rem;padding:7px 12px}
+  .rootbox{padding:16px}
+  .frow label{min-width:100%}
+  .pill{padding:6px 12px;font-size:.76rem}
+  /* table becomes cards */
+  .tbl-wrap{border:0;background:transparent;overflow:visible}
+  table,tbody,tr,td,th{display:block}
+  thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  caption{display:block;padding:0 0 10px}
+  tbody tr{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;padding:6px 14px 12px}
+  tbody th{border-top:0;padding:8px 0 4px;font-size:1.2rem}
+  td{border-top:0;padding:6px 0}
+  td::before{content:attr(data-label);display:block;font:700 .64rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-bottom:2px}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<a class="skip" href="#main">Sari la conținut</a>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#sus">A călca apa</a>
+    <nav aria-label="Secțiunile eseului">
+      <a href="#gestul">I · Gestul</a>
+      <a href="#stagnarea">II · Stagnarea</a>
+      <a href="#limbile">III · Limbile</a>
+      <a href="#tabel">Tabel</a>
+      <a href="#surse">Surse</a>
+    </nav>
+    <button class="theme-btn" id="theme" type="button" aria-label="Schimbă tema: luminoasă sau închisă">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="sus" aria-labelledby="h1">
+  <div class="wrap">
+    <p class="kicker">Eseu interactiv · paisprezece limbi</p>
+    <h1 class="title" id="h1">„A călca apa”</h1>
+    <p class="sub">arheologia unui gest — de la supraviețuire la filozofie</p>
+    <ul class="titles" id="titles" aria-label="Gestul literal în cele paisprezece limbi; alege una ca s-o vezi în scenă"></ul>
+    <p class="titles-note">Alege o limbă și vezi-o în scena din secțiunea III.</p>
+  </div>
+  <svg class="surface" viewBox="0 0 1200 76" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path class="c" d="M-120 40 q30 -14 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0"/>
+    <path class="a" d="M-120 30 q30 -14 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0"/>
+    <path class="b" d="M-120 52 q30 -14 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0"/>
+  </svg>
+  <div class="wrap">
+    <p class="openpar">O acțiune fiziologică identică — corpul ținut vertical, pe loc, într-un mediu care nu oferă sprijin — e numită, tradusă și moralizată diferit de la o limbă la alta. Eseul de față urmărește această diferență în paisprezece limbi și susține o teză în doi pași. Primul: verbul ales pentru gestul literal arată ce crede o limbă că face corpul în apă — o apasă, stă în ea, se ține de ea sau o lovește ritmic. Al doilea: locul în care fiecare limbă mută metafora stagnării — apa, uscatul sau mașina — arată pe cine dă vina atunci când efortul nu duce nicăieri: pe corp, pe sistem sau pe teren.</p>
+  </div>
+</section>
+
+<section class="sec" id="gestul" aria-labelledby="h-gest">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">1 · Gestul</p>
+      <h2 id="h-gest">I. Gestul literal — patru moduri de a sta în apă</h2>
+    </div>
+    <div class="gest-grid" id="gest-grid"></div>
+    <p class="cap">Cele patru moduri de a numi gestul literal.</p>
+
+    <div class="rootbox" id="rootbox">
+      <div>
+        <p class="kicker"><span class="dot valoare"></span>Un caz aparte · ebraica</p>
+        <p lang="ro">Un caz merită oprit separat. Rădăcina ebraică <span class="x" lang="he" dir="rtl">ד-ר-כ</span> (D-R-Kh), din care vine „călcarea” în apă, produce și cuvântul <span class="x" lang="he" dir="rtl">דרך</span> (<i class="tr">derech</i>), „drum, cale”. Verbul care descrie statul pe loc e, etimologic, verbul care face drumul — o tensiune scrisă chiar în rădăcina cuvântului, la care revin la final.</p>
+        <button class="replay" id="replay" type="button">Desfă rădăcina din nou</button>
+      </div>
+      <svg class="root-svg" id="rootsvg" viewBox="0 0 360 232" role="img" aria-label="Rădăcina ebraică ד-ר-כ se desface în două ramuri: călcare și drum">
+        <g lang="he" direction="rtl" style="unicode-bidi:isolate">
+          <text class="lt l1" x="226" y="70" text-anchor="middle">ד</text>
+          <text class="hy" x="203" y="66" text-anchor="middle">-</text>
+          <text class="lt" x="180" y="70" text-anchor="middle">ר</text>
+          <text class="hy" x="157" y="66" text-anchor="middle">-</text>
+          <text class="lt l3" x="134" y="70" text-anchor="middle">כ</text>
+        </g>
+        <text class="rt" x="180" y="98" text-anchor="middle">D-R-Kh</text>
+        <path class="br" d="M168 108 C140 128 112 134 98 158"/>
+        <path class="br" d="M192 108 C220 128 248 134 262 158"/>
+        <g class="w1"><text class="wd2" lang="he" direction="rtl" x="90" y="198" text-anchor="middle">דריכה</text><text class="lab" x="90" y="222" text-anchor="middle">călcare</text></g>
+        <g class="w2"><text class="wd2" lang="he" direction="rtl" x="270" y="198" text-anchor="middle">דרך</text><text class="lab" x="270" y="222" text-anchor="middle">derech · drum, cale</text></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="stagnarea" aria-labelledby="h-stag">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">2 · Stagnarea</p>
+      <h2 id="h-stag">II. Unde se mută stagnarea: sensurile figurate</h2>
+      <p class="measure">Când gestul devine metaforă, fiecare limbă alege o sursă-domeniu — domeniul concret din care împrumută imaginea (apa, drumul, mașina) pentru a vorbi despre ceva abstract, aici lipsa de progres. Alegerea nu e neutră. Am grupat limbile nu după familia lingvistică, ci după ce face metafora cu stagnarea.</p>
+    </div>
+    <p class="legend" aria-label="Culorile celor trei locuri">
+      <span><i class="dot apa"></i>Apa</span><span><i class="dot uscat"></i>Uscatul</span><span><i class="dot masina"></i>Mașina</span><span><i class="dot"></i>Neîncadrat în cele trei locuri</span>
+    </p>
+    <div class="cat-list" id="cat-list"></div>
+  </div>
+</section>
+
+<section class="sec" id="limbile" aria-labelledby="h-lim">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">3 · Vina</p>
+      <h2 id="h-lim">III. Ce trădează limbile: timp, vină și forța din afară</h2>
+      <p class="measure">Diferența decisivă nu trece între „Occident” și „Orient”. Trece între limbile care țin metafora stagnării în apă, cele care o mută pe uscat și cele care o mută în mașină. Fiecare mutare schimbă pe cine cade vina.</p>
+    </div>
+
+    <h3 class="sr-only" id="scena">Scena: alege o limbă</h3>
+    <div class="picker" id="picker" role="group" aria-label="Alege o limbă"></div>
+
+    <div class="scene" id="scene" aria-hidden="false">
+      <article class="panel apa" data-place="apa" aria-label="Apa: vina e a corpului">
+        <header><span class="pn">Apa</span><span class="pb">vina e a corpului</span></header>
+        <div class="vig"><div class="badge"></div><div class="vsvg"></div><svg class="arr" viewBox="0 0 200 140" aria-hidden="true" focusable="false"></svg></div>
+      </article>
+      <article class="panel uscat" data-place="uscat" aria-label="Uscatul: vina e a sistemului">
+        <header><span class="pn">Uscatul</span><span class="pb">vina e a sistemului</span></header>
+        <div class="vig"><div class="badge"></div><div class="vsvg"></div><svg class="arr" viewBox="0 0 200 140" aria-hidden="true" focusable="false"></svg></div>
+      </article>
+      <article class="panel masina" data-place="masina" aria-label="Mașina: vina e a terenului">
+        <header><span class="pn">Mașina</span><span class="pb">vina e a terenului</span></header>
+        <div class="vig"><div class="badge"></div><div class="vsvg"></div><svg class="arr" viewBox="0 0 200 140" aria-hidden="true" focusable="false"></svg></div>
+      </article>
+    </div>
+    <div class="extra" id="extra" hidden></div>
+    <p class="cap">Trei locuri în care limbile mută stagnarea — și trei destinatari ai vinei.</p>
+
+    <div class="readout" id="readout" aria-live="polite"></div>
+
+    <div class="places" id="places">
+      <div class="pcol apa" data-place="apa">
+        <h3>În apă, vina e a corpului.</h3>
+        <p>Metafora moștenește pericolul mediului: cine nu înaintează obosește și se scufundă. Timpul devine o resursă care se consumă spre un punct critic — un timp liniar și ireversibil. Imaginea se potrivește cu trei straturi ale culturii occidentale: eshatologia iudeo-creștină, care orientează istoria spre un final; ceea ce Max Weber numea asceza intramundană protestantă, adică ideea că munca trebuie să producă roade vizibile ca dovadă a valorii celui care o face; și Sisif al lui Camus, pentru care efortul fără progres e chipul absurdului.</p>
+      </div>
+      <div class="pcol uscat" data-place="uscat">
+        <h3>Pe uscat, vina e a sistemului.</h3>
+        <p>Marșul pe loc nu ucide pe nimeni; e o critică a ineficienței colective. Pericolul vital dispare, iar timpul irosit devine frustrant, uneori ridicol, dar reversibil: marșul poate fi reluat oricând.</p>
+      </div>
+      <div class="pcol masina" data-place="masina">
+        <h3>În mașină, vina e a terenului.</h3>
+        <p>Roata rusească blocată în noroi trimite la o experiență colectivă concretă — drumurile impracticabile, sezonul de desfundare numit rasputița — și la o cauzalitate exterioară, impersonală. E opusul logicii weberiene, în care răspunderea pentru rezultat stă numai pe umerii individului.</p>
+      </div>
+    </div>
+
+    <div class="zhbox" id="zhbox">
+      <div>
+        <p class="kicker"><span class="dot apa"></span>Chineza · două voci</p>
+        <p>Chineza arată că aceeași cultură poate conține poziții opuse. Proverbul bărcii împotriva curentului e confucianist: perfecționarea de sine trebuie să fie continuă, altfel caracterul se erodează. În Daodejing, atribuit lui Laozi, apa e însă modelul virtuții supreme tocmai pentru că nu se opune: <span class="x" lang="zh-Hans">上善若水</span>, „binele suprem e ca apa” (cap. 8); nimic nu e mai moale decât apa și totuși nimic nu o întrece în a birui ce e tare (cap. 78). Vocea confucianistă cere efort împotriva curentului; cea daoistă îndeamnă la a-l urma.</p>
+      </div>
+      <div class="seg" role="group" aria-label="Alege vocea chineză">
+        <button type="button" id="zh-conf" aria-pressed="false">Vocea confucianistă<span class="e" lang="zh-Hans">逆水行舟，不进则退</span></button>
+        <button type="button" id="zh-dao" aria-pressed="false">Vocea daoistă<span class="e" lang="zh-Hans">上善若水</span></button>
+      </div>
+    </div>
+
+    <p class="trad-lead">Trei tradiții merg și mai departe și transformă nemișcarea sau scufundarea din eșec în valoare.</p>
+    <div class="trad" id="trad"></div>
+
+    <p class="closing">Luate împreună, aceste alegeri arată că limba nu doar descrie nemișcarea într-un mediu ostil. Prin imaginea pe care o alege, ea decide dacă nemișcarea e o urgență vitală, o vină colectivă, un ghinion de teren, o datorie morală sau o formă de grație.</p>
+  </div>
+</section>
+
+<section class="sec" id="tabel" aria-labelledby="h-tab">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Tabel</p>
+      <h2 id="h-tab">Tabel sinoptic</h2>
+    </div>
+    <div class="filters">
+      <div class="frow">
+        <label for="f-lang">Limbă</label>
+        <select id="f-lang"></select>
+      </div>
+      <div class="frow" id="f-cats" role="group" aria-label="Filtrează după categorie"><label>Categorie</label></div>
+    </div>
+    <p class="count" id="tcount" aria-live="polite"></p>
+    <div class="tbl-wrap">
+      <table id="tbl">
+        <caption class="sr-only">Tabel sinoptic: limba, gestul literal, stagnarea (figurat) și ce accentuează imaginea</caption>
+        <thead><tr><th scope="col">Limbă</th><th scope="col">Gestul literal</th><th scope="col">Stagnarea (figurat)</th><th scope="col">Ce accentuează imaginea</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="finale">Paisprezece limbi descriu aceeași mișcare a picioarelor și nu vorbesc aproape niciodată despre același lucru. Unde una vede un înec lent, alta vede un marș birocratic, a treia o roată care patinează în noroiul altcuiva, iar a patra, în chiar rădăcina cuvântului, drumul pe care ar trebui să-l facă. „A călca apa” nu e o expresie universală îmbrăcată în haine locale, ci paisprezece filozofii ale efortului care descriu același gest.</div>
+  </div>
+</section>
+
+<section class="sec" id="surse" aria-labelledby="h-surse">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Surse și note</p>
+      <h2 id="h-surse">Bibliografie</h2>
+    </div>
+    <ul class="biblio">
+      <li>Camus, Albert. Mitul lui Sisif (1942).</li>
+      <li>Heschel, Abraham Joshua. The Sabbath: Its Meaning for Modern Man. New York: Farrar, Straus and Young, 1951.</li>
+      <li>Lakoff, George; Johnson, Mark. Metaphors We Live By. Chicago: University of Chicago Press, 1980.</li>
+      <li>Laozi. Daodejing, capitolele 8 și 78.</li>
+      <li>Rumi, Jalāl al-Dīn. Masnavi (sec. XIII).</li>
+      <li>Weber, Max. Etica protestantă și spiritul capitalismului (1904–1905).</li>
+    </ul>
+    <p class="note" id="nota">Notă asupra termenilor: echivalentele pentru italiană, spaniolă, rusă, poloneză și ebraică au fost verificate în dicționare contextuale (Reverso Context, academic.ru) și în materiale ale unor școli de înot. Formele pentru arabă și persană, precum și ipoteza calcului din engleză în română și ebraică, merită confirmate cu un vorbitor nativ sau pe un corpus.</p>
+    <p class="legend" style="margin-top:14px"><span><i class="cf" style="font-style:normal;margin:0">de confirmat</i> marchează în pagină formele la care se referă această notă.</span></p>
+    <div class="share" aria-label="Distribuie">
+      <a id="sh-wa" href="https://wa.me/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.500-6.100c-.2-.1-1.500-.7-1.700-.8s-.4-.1-.6.100-.6.800-.8 1-.3.200-.6.100a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.200-.4.700-1.300a.5.500 0 0 0 0-.5c-.1-.1-.6-1.500-.8-2s-.4-.5-.6-.5h-.5a1 1 0 0 0-.7.300 3 3 0 0 0-.9 2.200 5.200 5.200 0 0 0 1.100 2.800 11.900 11.900 0 0 0 4.600 4.100c1.700.7 2.400.8 3.300.6a2.800 2.800 0 0 0 1.800-1.300 2.300 2.300 0 0 0 .2-1.300c-.1-.1-.3-.2-.6-.3z"/></svg>WhatsApp</a>
+      <a id="sh-fb" href="https://www.facebook.com/sharer/sharer.php" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.500 21v-8h2.700l.4-3.200h-3.100V7.800c0-.9.300-1.500 1.600-1.500h1.700V3.400a22 22 0 0 0-2.500-.1c-2.400 0-4.100 1.500-4.100 4.200v2.300H7.400V13h2.800v8z"/></svg>Facebook</a>
+      <a id="sh-x" href="https://twitter.com/intent/tweet" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.800 3h3l-6.600 7.500L22 21h-6.100l-4.800-6.200L5.600 21h-3l7.100-8.100L2.300 3h6.300l4.300 5.700zm-1 16.200h1.700L7.500 4.700H5.700z"/></svg>X</a>
+      <button id="sh-copy" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11z"/></svg><span id="sh-copy-t">Copiază linkul</span></button>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap">„A călca apa” · eseu interactiv · textul aparține autorului.</div></footer>
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var SHARE_URL='https://claude.ai/artifact/2zFaSSoRucd9DaBCjg1XWh';
+
+/* =====================================================================
+   DATE: structura unică din care se generează cardurile, scena și tabelul.
+   Câmpuri: f=formă originală, tr=transcriere, tl=traducere, et=etimologie,
+   g=modul gestului literal, c=categoria stagnării, t=0 (absent din tabelul eseului),
+   x=0 (absent din textul eseului), q=1 (afișat între ghilimele), after=text după formă,
+   ttr=1 (transcrierea apare și în tabel), confirm=1 (de confirmat, conform notei).
+   ===================================================================== */
+var PLACES={
+  apa:{n:'Apa',who:'corpul'},
+  uscat:{n:'Uscatul',who:'sistemul'},
+  masina:{n:'Mașina',who:'terenul'}
+};
+var GEST=[
+  {id:'calcare',n:'Călcarea'},
+  {id:'pozitionare',n:'Poziționarea'},
+  {id:'plutire',n:'Plutirea'},
+  {id:'pedalare',n:'Pedalarea'}
+];
+var CATS=[
+  {id:'pericol',n:'Stagnarea ca pericol',place:'apa',vig:'swimmer',card:1,gist:'Non-progresul nu e doar ineficient, e periculos cu întârziere.'},
+  {id:'mars',n:'Stagnarea ca marș pe loc',place:'uscat',vig:'soldier',card:1,gist:'A merge pe loc nu te îneacă; doar nu te duce nicăieri.'},
+  {id:'absurd',n:'Stagnarea ca absurd',place:null,vig:'mortar',card:1,gist:'Apa nu capătă formă sub pisălog, cum capătă grâul; efortul e absurd prin construcție, nu doar ineficient.'},
+  {id:'tactica',n:'Stagnarea ca tactică',place:null,vig:'velo',card:1,gist:'Nemișcarea devine calcul, nu înfrângere.'},
+  {id:'teren',n:'Stagnarea ca vină a terenului',place:'masina',vig:'wheel',card:1,gist:'Vina nu e a efortului, ci a contextului.'},
+  {id:'datorie',n:'Stagnarea ca datorie morală',place:'apa',vig:'boat',card:1,gist:'Proverbul nu descrie o stagnare neutră, ci un regres inevitabil în lipsa disciplinei.'},
+  {id:'supravietuire',n:'Supraviețuirea ca demnitate',place:'apa',vig:'buoy',card:1,gist:'A te ține la suprafață e, în sine, o reușită.'},
+  {id:'valoare',n:'Nemișcarea ca valoare',place:null,vig:'sabbath',card:0,gist:'Nemișcarea sau scufundarea din eșec în valoare.'}
+];
+var LANGS=[
+ {id:'ro',code:'ro',dir:'ltr',n:'Română',endo:'Română',short:'RO',
+  lit:[{f:'a călca apa',g:'calcare',et:'< lat. calcare, „a apăsa cu călcâiul”'}],
+  fig:[{f:'a bate pasul pe loc',c:'mars'},{f:'a bate apa în piuă',c:'absurd'},{f:'călcăm apa',c:'pericol',t:0,confirm:1,note:'ipoteză: calc din engleză'}],
+  accent:'marșul inutil; absurdul efortului'},
+ {id:'en',code:'en',dir:'ltr',n:'Engleză',endo:'English',short:'EN',
+  lit:[{f:'to tread water',g:'calcare',et:'din proto-germanicul *tredan (ca și Wasser treten)'}],
+  fig:[{f:'treading water',ex:"we're just treading water",c:'pericol'}],
+  accent:'epuizarea, resursa care se consumă'},
+ {id:'de',code:'de',dir:'ltr',n:'Germană',endo:'Deutsch',short:'DE',
+  lit:[{f:'Wasser treten',g:'calcare',et:'din proto-germanicul *tredan (ca și to tread water)'}],
+  fig:[{f:'auf der Stelle treten',c:'mars'},{f:'Wassertreten',after:'(Kneipp)',c:'valoare',place:'apa',vig:'kneipp',note:'o terapie Kneipp, mersul deliberat prin apă rece'}],
+  accent:'separă gestul (ritual sănătos) de eșec'},
+ {id:'fr',code:'fr',dir:'ltr',n:'Franceză',endo:'Français',short:'FR',
+  lit:[{f:'nager sur place',tl:'a înota pe loc',g:'pozitionare'}],
+  fig:[{f:'faire du surplace',c:'tactica',note:'din ciclismul de pistă'}],
+  accent:'nemișcarea ca tactică'},
+ {id:'it',code:'it',dir:'ltr',n:'Italiană',endo:'Italiano',short:'IT',
+  lit:[{f:'stare a galla',tl:'a sta la suprafață',g:'plutire'},{f:'la bicicletta',q:1,g:'pedalare',note:'în școlile de înot'}],
+  fig:[{f:'segnare il passo',c:'mars'},{f:"pestare l'acqua nel mortaio",c:'absurd'},{f:'restare a galla',c:'supravietuire',t:0}],
+  accent:'marșul inutil; absurdul efortului'},
+ {id:'es',code:'es',dir:'ltr',n:'Spaniolă',endo:'Español',short:'ES',
+  lit:[{f:'flotar de pie',g:'pozitionare'},{f:'hacer la bicicleta',q:1,g:'pedalare',note:'în școlile de înot'}],
+  fig:[{f:'mantenerse a flote',c:'supravietuire'}],
+  accent:'supraviețuirea ca reușită'},
+ {id:'ru',code:'ru',dir:'ltr',n:'Rusă',endo:'Русский',short:'RU',
+  lit:[{f:'плыть стоя',tl:'a înota stând',g:'pozitionare'},{f:'держаться на воде',et:'de la держать, „a ține”',g:'plutire'}],
+  fig:[{f:'топтаться на месте',tr:"toptat'sya na meste",c:'mars'},
+       {f:'буксовать',tr:"buksovat'",tl:'a patina',note:'despre roțile blocate în noroi sau zăpadă',c:'teren'},
+       {f:'толочь воду в ступе',c:'absurd'},
+       {f:'держаться на плаву',c:'supravietuire',t:0}],
+  accent:'vina terenului; absurdul efortului'},
+ {id:'pl',code:'pl',dir:'ltr',n:'Poloneză',endo:'Polski',short:'PL',
+  lit:[{f:'utrzymać się na wodzie',tl:'a se ține pe apă',g:'plutire'}],
+  fig:[{f:'utknąć w martwym punkcie',c:'teren',note:'martwy punkt: „punctul mort” al unui piston'}],
+  accent:'blocajul mecanic, fără vinovat'},
+ {id:'zh',code:'zh-Hans',dir:'ltr',n:'Chineză',endo:'中文',short:'ZH',
+  lit:[{f:'踩水',tr:'cǎishuǐ',ttr:1,g:'calcare'}],
+  fig:[{f:'原地踏步',tr:'yuándì tàbù',c:'mars'},
+       {f:'逆水行舟，不进则退',tr:'nìshuǐ xíngzhōu',tl:'barcă împotriva curentului: dacă nu înaintezi, dai înapoi',c:'datorie',note:'vocea confucianistă'},
+       {f:'上善若水',tl:'binele suprem e ca apa',c:'valoare',place:'apa',vig:'boatFollow',t:0,note:'vocea daoistă · Daodejing, cap. 8'}],
+  accent:'regresul moral în lipsa disciplinei'},
+ {id:'ja',code:'ja',dir:'ltr',n:'Japoneză',endo:'日本語',short:'JA',
+  lit:[{f:'立ち泳ぎ',tr:'tachiyogi',ttr:1,tl:'înot în picioare',g:'pozitionare'}],
+  fig:[{f:'足踏み',tr:'ashibumi',ttr:1,c:'mars'}],
+  accent:'diagnoza neutră a unui sistem'},
+ {id:'ko',code:'ko',dir:'ltr',n:'Coreeană',endo:'한국어',short:'KO',
+  lit:[{f:'선헤엄',tr:'seonheeom',ttr:1,et:'aceeași structură (ca în japoneză)',g:'pozitionare'}],
+  fig:[{f:'제자리걸음',tr:'jejari georeum',ttr:1,c:'mars'}],
+  accent:'diagnoza neutră a unui sistem'},
+ {id:'ar',code:'ar',dir:'rtl',n:'Arabă',endo:'العربية',short:'AR',
+  lit:[{f:'السباحة الواقفة',g:null,x:0,confirm:1}],
+  fig:[{f:'يراوح مكانه',tr:'yurāwiḥu makānahu',tl:'își mută greutatea de pe un picior pe altul, pe loc',c:'mars',confirm:1}],
+  accent:'un impas trecător, fără dramă'},
+ {id:'he',code:'he',dir:'rtl',n:'Ebraică',endo:'עברית',short:'HE',
+  lit:[{f:'דריכה במים',tl:'călcare în apă',g:'calcare'}],
+  fig:[{f:'לדרוך במקום',c:'mars',x:0},
+       {f:'דורכים במים',c:'pericol',t:0,confirm:1,note:'ipoteză: calc din engleză'},
+       {f:'ד-ר-כ',after:'(Șabatul)',c:'valoare',place:null,vig:'sabbath',t:0,note:'Șabatul, „un palat în timp”: oprirea totală, o zi din șapte'}],
+  accent:'drumul și oprirea sfințită'},
+ {id:'fa',code:'fa',dir:'rtl',n:'Persană',endo:'فارسی',short:'FA',
+  lit:[{f:'پا زدن در آب',tr:'pā zadan dar āb',tl:'a lovi cu piciorul în apă',et:'verbul زدن (zadan, „a lovi”)',g:'pedalare',confirm:1}],
+  fig:[{f:'در جا زدن',tr:'dar jā zadan',tl:'a bate pe loc',c:'mars',confirm:1},
+       {f:'غرق در عشق',tr:'gharq dar eshq',tl:'înecat în iubire',after:'(mistic)',c:'valoare',place:'apa',vig:'fana',confirm:1,note:'fanā, dizolvarea eului'}],
+  accent:'scufundarea ca extaz'}
+];
+var LG={},CT={},GT={};
+LANGS.forEach(function(l){LG[l.id]=l;l.fig.forEach(function(f,i){f.i=i})});
+CATS.forEach(function(c){CT[c.id]=c});
+GEST.forEach(function(g){GT[g.id]=g});
+function placeOf(f){return f.place!==undefined?f.place:CT[f.c].place}
+function vigOf(f){return f.vig||CT[f.c].vig}
+
+/* ---------- helpers ---------- */
+function dirA(l){return l.dir==='rtl'?' dir="rtl"':''}
+function x(id,t){var l=LG[id]||{code:id==='zh'?'zh-Hans':id,dir:'ltr'};if(id==='zh'){l=LG.zh}return '<span class="x" lang="'+l.code+'"'+dirA(l)+'>'+t+'</span>'}
+function tr(t){return '<i class="tr">'+t+'</i>'}
+var CF='<span class="cf" title="Merită confirmat cu un vorbitor nativ sau pe un corpus (Nota asupra termenilor)">de confirmat</span>';
+function ent(it,l){
+  var f=it.q?'„'+it.f+'”':it.f;
+  return '<span class="f x" lang="'+l.code+'"'+dirA(l)+'>'+f+'</span>'+(it.after?' <span class="aft">'+it.after+'</span>':'')+(it.tr?' '+tr(it.tr):'')+(it.tl?' <span class="tl">„'+it.tl+'”</span>':'')+(it.confirm?CF:'');
+}
+function pcls(f){var p=placeOf(f);return p||(f.c==='valoare'?'valoare':'')}
+function scrollTo(sel){var el=$(sel);if(el)el.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})}
+
+/* ---------- ilustrații (SVG inline, același stil) ---------- */
+function waveD(y,a){a=a||5;var d='M-50 '+y+' q12.5 '+(-a)+' 25 0';for(var i=0;i<11;i++)d+=' t25 0';return d}
+function water(y,o){o=o||{};var w=waveD(y,o.a);return '<g class="'+(o.rise?'rise':'')+'"><g class="wvg'+(o.fast?' fast':'')+'"><path class="fw" d="'+w+' L250 140 L-50 140Z"/><path class="wl" d="'+w+'"/></g></g>'}
+function hatch(y){var d='';for(var xx=-140;xx<210;xx+=14)d+='M'+xx+' 140 L'+(xx+(140-y))+' '+y+' ';return '<path class="ht" d="'+d+'"/>'}
+function floor(y){return '<path class="gl" d="M0 '+y+' H200"/>'}
+function svg(inner,label){return '<svg class="illu" viewBox="0 0 200 140" role="img" aria-label="'+label+'" focusable="false">'+inner+'</svg>'}
+function bike(xx,cls){
+  return '<g class="'+cls+'" style="transform-origin:'+xx+'px 116px"><circle class="s" cx="'+(xx-26)+'" cy="100" r="16"/><circle class="s" cx="'+(xx+26)+'" cy="100" r="16"/>'+
+  '<path class="s" d="M'+(xx-26)+' 100 L'+(xx-6)+' 100 L'+(xx-14)+' 74 M'+(xx-6)+' 100 L'+(xx+14)+' 76 L'+(xx+26)+' 100 M'+(xx-14)+' 74 L'+(xx+14)+' 76 M'+(xx-18)+' 72 H'+(xx-8)+' M'+(xx+14)+' 76 L'+(xx+18)+' 68 H'+(xx+24)+'"/>'+
+  '<path class="s" d="M'+(xx-12)+' 72 L'+(xx+8)+' 54"/><circle class="fi" cx="'+(xx+14)+'" cy="50" r="8"/></g>';
+}
+var mudD='M-10 108 q10 -7 20 0';for(var mi=0;mi<10;mi++)mudD+=' t20 0';
+var ILL={
+  calcare:function(){return svg('<g class="press"><path class="s" d="M104 10 L100 62"/><ellipse class="fi" cx="100" cy="68" rx="17" ry="5"/></g><path class="s thin" d="M52 24 V64 M45 56 L52 64 L59 56"/><ellipse class="rip sw" cx="100" cy="90" rx="12" ry="3.5" style="transform-origin:100px 90px"/>'+water(88)+floor(132),'Un picior apasă suprafața apei')},
+  pozitionare:function(){return svg('<g class="bob"><circle class="fi" cx="100" cy="42" r="10"/><path class="s" d="M100 54 V92 M100 64 L84 80 M100 64 L116 80"/><g class="lgA" style="transform-origin:100px 92px"><path class="s" d="M100 92 L88 122"/></g><g class="lgB" style="transform-origin:100px 92px"><path class="s" d="M100 92 L112 122"/></g></g>'+water(70)+floor(132),'Corp vertical, nemișcat în apă')},
+  plutire:function(){return svg('<circle class="fi" cx="82" cy="74" r="9"/><path class="s" d="M82 84 V114 M82 92 L108 78"/><g class="drift"><circle class="rg" cx="124" cy="74" r="13"/></g>'+water(80)+floor(132),'Un om se ține de un colac care vrea să alunece')},
+  pedalare:function(){return svg('<circle class="fi" cx="100" cy="30" r="9"/><path class="s" d="M100 41 V74"/><circle class="dsh" cx="100" cy="102" r="26"/><g class="spin" style="transform-origin:100px 102px"><path class="s" d="M78 116 L122 88"/><rect class="fi" x="64" y="113" width="22" height="8" rx="3"/><rect class="fi" x="114" y="84" width="22" height="8" rx="3"/></g>'+water(72)+floor(132),'Picioarele pedalează sub apă, fără să ducă nicăieri')},
+  swimmer:function(){return svg('<circle class="fi" cx="64" cy="76" r="9"/><g class="flapL" style="transform-origin:64px 92px"><path class="s" d="M64 92 L44 72"/></g><g class="flapR" style="transform-origin:64px 92px"><path class="s" d="M64 92 L84 72"/></g><path class="s" d="M64 86 V116"/>'+
+    '<path class="s thin" d="M130 22 H170 M130 84 H170 M134 22 Q134 50 150 53 Q134 56 134 84 M166 22 Q166 50 150 53 Q166 56 166 84"/><path class="sand sandT" d="M138 26 H162 L150 48Z" style="transform-origin:150px 48px"/><path class="sand sandB" d="M138 80 H162 L150 62Z" style="transform-origin:150px 80px"/><path class="s thin thread" d="M150 52 V78"/>'+
+    water(88,{fast:1,rise:1})+floor(132),'Înotător vertical într-o apă agitată, lângă o clepsidră')},
+  soldier:function(){return svg('<g class="cogs" style="transform-origin:36px 64px"><circle class="cg" cx="36" cy="64" r="15"/><circle class="cg2" cx="36" cy="64" r="8"/></g><g class="cogs rev" style="transform-origin:62px 40px"><circle class="cg" cx="62" cy="40" r="9" style="stroke-dasharray:5.6 5.6;stroke-width:5"/><circle class="cg2" cx="62" cy="40" r="4"/></g>'+
+    '<circle class="fi" cx="124" cy="34" r="9"/><path class="s" d="M114 30 Q124 17 134 30"/><path class="s" d="M124 44 V82"/><g class="armA" style="transform-origin:124px 52px"><path class="s" d="M124 52 L108 70"/></g><g class="armB" style="transform-origin:124px 52px"><path class="s" d="M124 52 L140 70"/></g>'+
+    '<g class="stepA" style="transform-origin:124px 82px"><path class="s" d="M124 82 L112 100 L112 118"/></g><g class="stepB" style="transform-origin:124px 82px"><path class="s" d="M124 82 L136 100 L136 118"/></g>'+
+    hatch(118)+floor(118)+'<circle class="fi puff" cx="108" cy="116" r="3" style="transform-origin:108px 116px"/><circle class="fi puff" cx="142" cy="116" r="3" style="transform-origin:142px 116px;animation-delay:.6s"/>','Soldat care bate pasul pe loc, lângă un angrenaj')},
+  wheel:function(){return svg('<path class="s" d="M50 84 A46 46 0 0 1 140 84"/><g class="spin fast" style="transform-origin:95px 88px"><circle class="s" cx="95" cy="88" r="26"/><circle class="tread" cx="95" cy="88" r="31"/><path class="s thin" d="M69 88 H121 M82 65.500 L108 110.500 M108 65.500 L82 110.500"/><circle class="fi" cx="95" cy="88" r="5"/></g>'+
+    '<path class="mud" d="'+mudD+' L210 140 L-10 140Z"/><circle class="drop d1" cx="68" cy="104" r="3.4"/><circle class="drop d2" cx="64" cy="106" r="2.6"/><circle class="drop d3" cx="72" cy="104" r="3"/>','Roată care patinează în noroi')},
+  boat:function(){return svg('<g class="strive"><path class="s hull" d="M58 84 H142 L128 104 H72Z"/><path class="s" d="M100 84 V34"/><path class="sailf" d="M100 38 L100 78 L134 78Z"/><g class="oar" style="transform-origin:90px 92px"><path class="s" d="M90 92 L68 118"/></g></g>'+water(100,{a:4})+'<path class="cur flowL" d="M120 116 h26"/><path class="cur flowL" style="animation-delay:.7s" d="M60 126 h30"/><path class="cur flowL" style="animation-delay:1.4s" d="M130 130 h20"/>','Barcă care vâslește împotriva curentului')},
+  boatFollow:function(){return svg('<g class="sail"><path class="s hull" d="M58 84 H142 L128 104 H72Z"/><path class="s" d="M100 84 V34"/><path class="sailf" d="M100 38 L100 78 L134 78Z"/></g>'+water(100,{a:4})+'<path class="cur flowR" d="M40 116 h26"/><path class="cur flowR" style="animation-delay:.7s" d="M90 126 h30"/><path class="cur flowR" style="animation-delay:1.4s" d="M30 130 h20"/>','Barcă purtată de curent')},
+  buoy:function(){return svg('<circle class="fi" cx="100" cy="70" r="8"/><path class="s" d="M100 80 V104 M100 86 L80 74 M100 86 L120 74"/><g class="bob"><circle class="rg" cx="100" cy="88" r="27"/><circle class="rg2" cx="100" cy="88" r="27"/></g><g class="spark"><path class="gs thin" d="M100 22 V32 M74 30 L79 38 M126 30 L121 38"/></g>'+water(92)+floor(132),'Colac de salvare care ține un om la suprafață')},
+  mortar:function(){return svg('<path class="bowl" d="M44 66 H156 C156 108 132 124 100 124 C68 124 44 108 44 66Z"/><path class="bw" d="M50 86 q12.5 -5 25 0 t25 0 t25 0 t25 0 C150 110 128 120 100 120 C72 120 50 110 50 86Z"/><g class="pound"><path class="s" d="M104 6 V82"/><ellipse class="fi" cx="104" cy="86" rx="10" ry="6"/></g><circle class="wd sp1" cx="104" cy="82" r="3.200"/><circle class="wd sp2" cx="100" cy="82" r="2.800"/><circle class="wd sp3" cx="108" cy="82" r="3.200"/><path class="gl" d="M20 128 H180"/>','Apă pisată în piuă')},
+  velo:function(){return svg('<path class="trk" d="M0 118 H200"/><path class="trk" stroke-dasharray="4 8" d="M0 128 H200"/>'+bike(56,'rockA')+bike(146,'rockB'),'Doi sprinteri stau nemișcați pe velodrom')},
+  kneipp:function(){return svg('<circle class="gw glowp" cx="100" cy="58" r="32" style="transform-origin:100px 58px"/><circle class="fi" cx="100" cy="28" r="9"/><path class="s" d="M100 40 V84"/><g class="armA" style="transform-origin:100px 50px"><path class="s" d="M100 50 L84 68"/></g><g class="armB" style="transform-origin:100px 50px"><path class="s" d="M100 50 L116 68"/></g><g class="stepA" style="transform-origin:100px 84px"><path class="s" d="M100 84 L90 104 L90 128"/></g><g class="stepB" style="transform-origin:100px 84px"><path class="s" d="M100 84 L110 104 L110 128"/></g><g class="spark"><path class="gs thin" d="M56 30 v9 M51.500 34.500 h9 M148 38 v9 M143.500 42.500 h9"/></g>'+water(102,{a:4})+floor(134),'Mers deliberat prin apă rece, ca ritual de vitalitate')},
+  sabbath:function(){return svg('<path class="s thin road" d="M10 112 H120"/><g class="walker"><circle class="fi" cx="22" cy="92" r="6"/><path class="s thin" d="M22 99 V110"/></g><circle class="gw halo" cx="156" cy="78" r="30" style="transform-origin:156px 78px"/><path class="s" d="M130 114 V74 Q130 40 157 40 Q184 40 184 74 V114Z"/><g><circle class="fi" cx="30" cy="130" r="3.500"/><circle class="fi" cx="54" cy="130" r="3.500"/><circle class="fi" cx="78" cy="130" r="3.500"/><circle class="fi" cx="102" cy="130" r="3.500"/><circle class="fi" cx="126" cy="130" r="3.500"/><circle class="fi" cx="150" cy="130" r="3.500"/><circle class="gf" cx="176" cy="130" r="6"/></g>','Drumul se oprește la pragul Șabatului: șase zile de mers, a șaptea de oprire')},
+  fana:function(){return svg('<path class="gs thin" opacity=".5" d="M66 34 L56 96 M134 34 L144 96"/>'+water(32,{a:4})+'<g class="sink"><circle class="gw glowp" cx="100" cy="62" r="24" style="transform-origin:100px 62px"/><circle class="fi" cx="100" cy="52" r="8"/><path class="s" d="M100 62 L82 74 M100 62 L118 74 M100 62 V94 M100 94 L92 114 M100 94 L108 114"/></g><circle class="sw bub" cx="76" cy="120" r="3"/><circle class="sw bub" style="animation-delay:1.3s" cx="130" cy="126" r="4"/><circle class="sw bub" style="animation-delay:2.4s" cx="108" cy="122" r="2.500"/>','Un trup se lasă în adânc și se dizolvă')}
+};
+var ARROW={
+  swimmer:'M114 16 Q84 18 72 62',
+  boat:'M162 20 Q154 60 130 80',
+  soldier:'M100 12 Q56 4 38 44',
+  wheel:'M168 24 Q178 62 164 100'
+};
+var DEFVIG={apa:'swimmer',uscat:'soldier',masina:'wheel'};
+
+/* ---------- observator: pornește animațiile doar cât sunt vizibile ---------- */
+var sceneVisible=false;
+var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.target.id==='scene'||e.target.id==='extra'){sceneVisible=e.isIntersecting;syncScene();return}
+    if(e.target.id==='rootsvg'){if(e.isIntersecting)e.target.classList.add('on');return}
+    e.target.classList.toggle('on',e.isIntersecting);
+  });
+},{rootMargin:'80px'}):null;
+function watch(el){if(io)io.observe(el);else el.classList.add('on')}
+function syncScene(){
+  $$('#scene .panel').forEach(function(p){var s=$('.illu',p);if(s)s.classList.toggle('on',p.classList.contains('on')&&(sceneVisible||!io))});
+  var s2=$('#extra .illu');if(s2)s2.classList.toggle('on',sceneVisible||!io);
+}
+
+/* ---------- Secțiunea I ---------- */
+var TXT={gest:{},cat:{},trad:{}};
+TXT.gest.calcare='Româna ('+x('ro','a călca apa')+', &lt; lat. calcare, „a apăsa cu călcâiul”), engleza ('+x('en','to tread water')+'), germana ('+x('de','Wasser treten')+', ambele din proto-germanicul *tredan), chineza ('+x('zh','踩水')+', '+tr('cǎishuǐ')+') și ebraica ('+x('he','דריכה במים')+', „călcare în apă”) tratează apa ca pe o suprafață pe care piciorul o poate apăsa. Lakoff și Johnson ar numi asta o metaforă ontologică: un fluid fără formă e gândit ca un obiect solid, ca să poată fi înțeles cu instrumentele unui corp obișnuit să meargă pe pământ. Apa nu are treaptă; verbul i-o dă.';
+TXT.gest.pozitionare='Japoneza ('+x('ja','立ち泳ぎ')+', '+tr('tachiyogi')+', „înot în picioare”), coreeana ('+x('ko','선헤엄')+', '+tr('seonheeom')+', aceeași structură), rusa ('+x('ru','плыть стоя')+', „a înota stând”), spaniola ('+x('es','flotar de pie')+') și franceza ('+x('fr','nager sur place')+', „a înota pe loc”) nu spun nimic despre ce face corpul apei. Descriu doar o postură. Subiectul nu asaltează mediul; se află în el.';
+TXT.gest.plutire='Italiana ('+x('it','stare a galla')+', „a sta la suprafață”), poloneza ('+x('pl','utrzymać się na wodzie')+', „a se ține pe apă”) și rusa ('+x('ru','держаться на воде')+', de la '+x('ru','держать')+', „a ține”) descriu flotabilitatea ca pe ceva ce trebuie reținut, ca și cum ar putea scăpa din mână. Logica e de posesie, nu de cucerire.';
+TXT.gest.pedalare='Școlile de înot italiene și spaniole numesc mișcarea picioarelor „'+x('it','la bicicletta')+'”, respectiv „'+x('es','hacer la bicicleta')+'”, iar persana o descrie colocvial prin verbul '+x('fa','زدن')+' ('+tr('zadan')+', „a lovi”): '+tr('pā zadan dar āb')+', „a lovi cu piciorul în apă”. Nu mai e o presiune continuă, ci un ritm — lovituri sau ture de pedală care nu duc nicăieri. Imaginea anticipează deja sensul figurat.';
+
+TXT.cat.pericol='Engleza păstrează apa: „'+x('en',"we're just treading water")+'”, spus despre o companie sau o carieră, sugerează o resursă care se consumă și un înec amânat. Non-progresul nu e doar ineficient, e periculos cu întârziere. Româna și ebraica modernă par să preia tot mai des aceeași formulă („'+x('ro','călcăm apa')+'”, „'+x('he','דורכים במים')+'”), probabil prin traducerea discursului de business anglofon — o ipoteză care ar merita verificată pe un corpus de presă. Idiomurile lor native pentru stagnare sunt, oricum, terestre.';
+TXT.cat.mars='Majoritatea limbilor mută stagnarea pe uscat, în imaginea soldatului care bate pasul fără să înainteze: româna ('+x('ro','a bate pasul pe loc')+'), italiana ('+x('it','segnare il passo')+'), germana ('+x('de','auf der Stelle treten')+'), rusa ('+x('ru','топтаться на месте')+'), chineza ('+x('zh','原地踏步')+'), japoneza ('+x('ja','足踏み')+'), coreeana ('+x('ko','제자리걸음')+'), araba ('+x('ar','يراوح مكانه')+', '+tr('yurāwiḥu makānahu')+', „își mută greutatea de pe un picior pe altul, pe loc”) și persana ('+x('fa','در جا زدن')+', '+tr('dar jā zadan')+', „a bate pe loc”). A merge pe loc nu te îneacă; doar nu te duce nicăieri. De aceea, aceste expresii descriu mai ales economii, reforme sau negocieri, nu drame personale. Persana face aici ceva elegant: păstrează același verb, '+tr('zadan')+', de la gestul din apă la idiomul stagnării, schimbând doar obiectul — „a lovi apa” devine „a lovi locul”.';
+TXT.cat.absurd='Trei limbi fără legătură istorică directă au ajuns la aceeași imagine: apa pisată în piuă. Româna spune „'+x('ro','a bate apa în piuă')+'”, italiana „'+x('it',"pestare l'acqua nel mortaio")+'”, rusa „'+x('ru','толочь воду в ступе')+'”. Apa nu capătă formă sub pisălog, cum capătă grâul; efortul e absurd prin construcție, nu doar ineficient. Tonul e mai degrabă ironic decât anxios.';
+TXT.cat.tactica='Franceza '+x('fr','faire du surplace')+' vine din ciclismul de pistă: doi sprinteri stau nemișcați în echilibru, fiecare refuzând să preia conducerea. Nemișcarea devine calcul, nu înfrângere.';
+TXT.cat.teren='Rusa '+x('ru','буксовать')+' („a patina”, despre roțile blocate în noroi sau zăpadă) și poloneza '+x('pl','martwy punkt')+' („punctul mort” al unui piston, ca în „'+x('pl','utknąć w martwym punkcie')+'”) aduc o sursă-domeniu mecanică. Motorul merge, roata se învârte, dar suprafața nu oferă aderență. Vina nu e a efortului, ci a contextului.';
+TXT.cat.datorie='Chineza păstrează apa, dar o încarcă moral: '+x('zh','逆水行舟，不进则退')+', „barcă împotriva curentului: dacă nu înaintezi, dai înapoi”. Proverbul nu descrie o stagnare neutră, ci un regres inevitabil în lipsa disciplinei.';
+TXT.cat.supravietuire='Formulele de plutire — rusescul '+x('ru','держаться на плаву')+', italianul '+x('it','restare a galla')+', spaniolul '+x('es','mantenerse a flote')+' — descriu rezistența într-o criză. Spre deosebire de „treading water”, ele nu sugerează un eșec mascat: a te ține la suprafață e, în sine, o reușită.';
+
+TXT.trad.de='<h3>Germana</h3><p>'+x('de','Wassertreten')+' numește și o terapie Kneipp, mersul deliberat prin apă rece, practicat în stațiunile balneare de peste un secol. Același gest devine ritual de vitalitate, iar sensul negativ e lăsat altei expresii, '+x('de','auf der Stelle treten')+'.</p>';
+TXT.trad.he='<h3>Ebraica</h3><p>Rădăcina '+x('he','ד-ר-כ')+' leagă călcarea de drum, ca și cum mersul înainte ar fi starea firească a lucrurilor. Și totuși aceeași tradiție sfințește, o zi din șapte, oprirea totală. Abraham Joshua Heschel descria Șabatul drept „un palat în timp”: încetarea lucrului nu e un eșec al productivității, ci scopul săptămânii. Drumul capătă sens tocmai pentru că e întrerupt ritmic. E, probabil, cea mai fină tensiune din tot eșantionul.</p>';
+TXT.trad.fa='<h3>Persana</h3><p>Poezia mistică sufi (Rumi, Hafez) folosește verbul „a se îneca” într-un sens pozitiv. '+x('fa','غرق در عشق')+' ('+tr('gharq dar eshq')+'), „înecat în iubire”, descrie contopirea cu divinul, dizolvarea eului pe care sufismul o numește '+tr('fanā')+'. Ceea ce pentru engleză e sfârșitul temut al lui „treading water” devine aici ținta spirituală: nu te mai zbați să rămâi la suprafață, te lași în adânc.</p>';
+
+function langTok(l,pressed,extra){
+  return '<button type="button" class="tok" data-l="'+l.id+'" aria-pressed="'+pressed+'"'+(extra||'')+'><span class="e" lang="'+l.code+'"'+dirA(l)+'>'+l.endo+'</span><span class="n">'+l.n+'</span></button>';
+}
+
+/* hero: gestul literal în 14 limbi */
+$('#titles').innerHTML=LANGS.map(function(l){
+  return '<li><a href="#picker" data-l="'+l.id+'" lang="'+l.code+'"'+dirA(l)+'>'+l.lit[0].f+'</a></li>';
+}).join('');
+$('#titles').addEventListener('click',function(e){
+  var a=e.target.closest('a[data-l]');if(!a)return;e.preventDefault();
+  selectLang(a.getAttribute('data-l'));scrollTo('#picker');
+});
+
+/* carduri pentru cele patru moduri */
+$('#gest-grid').innerHTML=GEST.map(function(g){
+  var ls=LANGS.filter(function(l){return l.lit.some(function(i){return i.g===g.id&&i.x!==0})});
+  return '<article class="gcard" data-g="'+g.id+'"><div class="ib">'+ILL[g.id]()+'</div><p class="kicker" style="margin:0">'+(GEST.indexOf(g)+1)+' · '+g.n+'</p><h3>'+g.n+'</h3><p>'+TXT.gest[g.id]+'</p>'+
+    '<div class="toks" role="group" aria-label="Limbile modului '+g.n+'">'+ls.map(function(l,i){return langTok(l,i===0)}).join('')+'</div><div class="reader" aria-live="polite"></div></article>';
+}).join('');
+function fillGest(card,lid){
+  var g=card.getAttribute('data-g'),l=LG[lid];
+  $$('.tok',card).forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-l')===lid)});
+  var items=l.lit.filter(function(i){return i.g===g&&i.x!==0});
+  $('.reader',card).innerHTML=items.map(function(it){
+    return '<div class="row">'+ent(it,l)+'</div>'+(it.et?'<div class="meta">'+it.et+'</div>':'')+(it.note?'<div class="meta">'+it.note+'</div>':'');
+  }).join('<div style="height:8px"></div>')+'<button class="go" type="button" data-l="'+l.id+'">Vezi limba în scenă</button>';
+}
+$$('.gcard').forEach(function(card){
+  fillGest(card,$('.tok',card).getAttribute('data-l'));
+  card.addEventListener('click',function(e){
+    var t=e.target.closest('.tok');if(t){fillGest(card,t.getAttribute('data-l'));return}
+    var go=e.target.closest('.go');if(go){selectLang(go.getAttribute('data-l'));scrollTo('#picker')}
+  });
+});
+
+/* rădăcina ebraică */
+(function(){
+  var s=$('#rootsvg');watch(s);
+  $('#replay').addEventListener('click',function(){s.classList.remove('on');void s.getBoundingClientRect();s.classList.add('on')});
+})();
+
+/* ---------- Secțiunea II ---------- */
+$('#cat-list').innerHTML=CATS.filter(function(c){return c.card}).map(function(c){
+  var pairs=[];LANGS.forEach(function(l){l.fig.forEach(function(f){if(f.c===c.id&&f.x!==0)pairs.push([l,f])})});
+  var pn=c.place?PLACES[c.place].n:'Neîncadrat în cele trei locuri';
+  return '<article class="crow" data-c="'+c.id+'"><div><div class="ib">'+ILL[c.vig]()+'</div></div><div>'+
+    '<p class="place-tag"><i class="dot '+(c.place||'')+'"></i>'+pn+'</p><h3>'+c.n+'</h3><p>'+TXT.cat[c.id]+'</p>'+
+    '<div class="toks" role="group" aria-label="Expresii: '+c.n+'">'+pairs.map(function(p,i){
+      return '<button type="button" class="xtok" data-l="'+p[0].id+'" data-i="'+p[1].i+'" aria-pressed="'+(i===0)+'"><b>'+p[0].short+'</b><span class="x" lang="'+p[0].code+'"'+dirA(p[0])+'>'+p[1].f+'</span></button>';
+    }).join('')+'</div><div class="reader" aria-live="polite"></div></div></article>';
+}).join('');
+function fillCat(row,lid,i){
+  var l=LG[lid],f=l.fig[i];
+  $$('.xtok',row).forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-l')===lid&&b.getAttribute('data-i')==i)});
+  $('.reader',row).innerHTML='<div class="row">'+ent(f,l)+'</div>'+
+    (f.ex?'<div class="meta">în uz: „<span class="x" lang="'+l.code+'">'+f.ex+'</span>”</div>':'')+
+    (f.note?'<div class="meta">'+f.note+'</div>':'')+
+    '<div class="meta"><b style="font:700 .64rem var(--sans);letter-spacing:.1em;text-transform:uppercase">'+l.n+' · ce accentuează imaginea</b> '+l.accent+'</div>'+
+    '<button class="go" type="button" data-l="'+l.id+'" data-i="'+i+'">Vezi în scenă</button>';
+}
+$$('.crow').forEach(function(row){
+  var t=$('.xtok',row);fillCat(row,t.getAttribute('data-l'),+t.getAttribute('data-i'));
+  row.addEventListener('click',function(e){
+    var b=e.target.closest('.xtok');if(b){fillCat(row,b.getAttribute('data-l'),+b.getAttribute('data-i'));return}
+    var go=e.target.closest('.go');if(go){selectLang(go.getAttribute('data-l'),+go.getAttribute('data-i'));scrollTo('#picker')}
+  });
+});
+
+/* ---------- Secțiunea III: scena ---------- */
+var state={lang:'ru',ex:0};
+$('#picker').innerHTML=LANGS.map(function(l){return langTok(l,l.id===state.lang)}).join('');
+$('#picker').addEventListener('click',function(e){var t=e.target.closest('.tok');if(t)selectLang(t.getAttribute('data-l'))});
+function blameOf(f){
+  var c=f.c,p=placeOf(f);
+  if(c==='valoare')return {k:'valoare',t:'Nemișcarea sau scufundarea devine valoare, nu eșec'};
+  if(c==='supravietuire')return {k:'apa',t:'Nicio vină: a te ține la suprafață e, în sine, o reușită'};
+  if(c==='absurd')return {k:'',t:'Efortul e absurd prin construcție'};
+  if(c==='tactica')return {k:'',t:'Nemișcarea devine calcul, nu înfrângere'};
+  if(p==='apa')return {k:'apa',t:'Vina e a corpului · '+(c==='datorie'?'regres în lipsa disciplinei':'cine nu înaintează obosește și se scufundă')};
+  if(p==='uscat')return {k:'uscat',t:'Vina e a sistemului · o critică a ineficienței colective'};
+  return {k:'masina',t:'Vina e a terenului · o cauzalitate exterioară, impersonală'};
+}
+function selectLang(id,i){state.lang=id;state.ex=i||0;renderScene()}
+function renderScene(){
+  var l=LG[state.lang],f=l.fig[state.ex],place=placeOf(f),vig=vigOf(f),b=blameOf(f);
+  $$('#picker .tok').forEach(function(t){t.setAttribute('aria-pressed',t.getAttribute('data-l')===state.lang)});
+  $$('#scene .panel').forEach(function(p){
+    var pl=p.getAttribute('data-place'),on=pl===place;
+    p.classList.toggle('on',on);
+    var v=on?vig:DEFVIG[pl];
+    $('.vsvg',p).innerHTML=ILL[v]();
+    var ar=$('.arr',p);
+    if(on&&ARROW[v]&&b.k===pl&&f.c!=='supravietuire'){
+      ar.innerHTML='<defs><marker id="mk-'+pl+'" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4.600" markerHeight="4.600" orient="auto"><path class="ah" d="M0 0 L10 5 L0 10z"/></marker></defs><g><path class="ln" d="'+ARROW[v]+'" marker-end="url(#mk-'+pl+')"/></g>';
+    }else ar.innerHTML='';
+    $('.badge',p).innerHTML=on?'<span lang="'+l.code+'"'+dirA(l)+'>'+f.f+'</span>':'';
+  });
+  var ex=$('#extra');
+  if(place===null){
+    ex.hidden=false;
+    ex.innerHTML='<div class="vig">'+ILL[vig]()+'</div><div><p class="blame '+b.k+'">'+b.t+'</p><div class="exb" lang="'+l.code+'"'+dirA(l)+'>'+f.f+(f.after?' <span style="font-size:.7em">'+f.after+'</span>':'')+'</div><p>'+(f.note?f.note+'. ':'')+'Între locuri: eseul nu mută această imagine în apă, pe uscat sau în mașină.</p></div>';
+  }else{ex.hidden=true;ex.innerHTML=''}
+  $$('.pcol').forEach(function(p){p.classList.toggle('on',p.getAttribute('data-place')===place)});
+  /* citire */
+  var lits=l.lit.map(function(it){
+    return '<div class="ent"><div class="g">'+(it.g?GT[it.g].n:'Neîncadrat în cele patru moduri')+'</div><div class="f">'+ent(it,l)+'</div>'+(it.et?'<div class="m">'+it.et+'</div>':'')+(it.note?'<div class="m">'+it.note+'</div>':'')+'</div>';
+  }).join('');
+  var xcs=l.fig.map(function(g){
+    return '<button class="xc" type="button" data-i="'+g.i+'" aria-pressed="'+(g.i===state.ex)+'"><i class="pd '+pcls(g)+'"></i><span class="x" lang="'+l.code+'"'+dirA(l)+'>'+g.f+'</span></button>';
+  }).join('');
+  var pn=place?PLACES[place].n:(f.c==='valoare'?'Între locuri':'Neîncadrat în cele trei locuri');
+  $('#readout').innerHTML=
+    '<div class="rbox"><h4>Gestul literal · '+l.n+'</h4>'+lits+'</div>'+
+    '<div class="rbox"><h4>Expresia figurată · '+pn+'</h4><div class="xcs" role="group" aria-label="Expresiile limbii">'+xcs+'</div>'+
+    '<p class="blame '+b.k+'">'+b.t+'</p>'+
+    '<div class="ent"><div class="f">'+ent(f,l)+'</div>'+(f.ex?'<div class="m">în uz: „<span class="x" lang="'+l.code+'">'+f.ex+'</span>”</div>':'')+(f.note?'<div class="m">'+f.note+'</div>':'')+'</div>'+
+    '<p class="gist">'+CT[f.c].gist+'</p><p class="acc"><b>Ce accentuează imaginea</b>'+l.accent+'</p></div>';
+  $('#zh-conf').setAttribute('aria-pressed',state.lang==='zh'&&f.f.indexOf('逆水')===0);
+  $('#zh-dao').setAttribute('aria-pressed',state.lang==='zh'&&f.f==='上善若水');
+  syncScene();
+}
+$('#readout').addEventListener('click',function(e){var b=e.target.closest('.xc');if(b){state.ex=+b.getAttribute('data-i');renderScene()}});
+function zhVoice(fstart){
+  var i=0;LG.zh.fig.forEach(function(f){if(f.f.indexOf(fstart)===0)i=f.i});
+  selectLang('zh',i);scrollTo('#picker');
+}
+$('#zh-conf').addEventListener('click',function(){zhVoice('逆水')});
+$('#zh-dao').addEventListener('click',function(){zhVoice('上善')});
+
+/* cele trei tradiții */
+var TRAD=[{k:'de',v:'kneipp',lang:'de',i:1,label:'Vezi în scenă: Wassertreten'},{k:'he',v:'sabbath',lang:'he',i:2,label:'Vezi în scenă: Șabatul'},{k:'fa',v:'fana',lang:'fa',i:1,label:'Vezi în scenă: fanā'}];
+$('#trad').innerHTML=TRAD.map(function(t){
+  return '<article class="tcard"><div class="ib">'+ILL[t.v]()+'</div>'+TXT.trad[t.k]+'<button class="go" type="button" data-l="'+t.lang+'" data-i="'+t.i+'">'+t.label+'</button></article>';
+}).join('');
+$('#trad').addEventListener('click',function(e){var g=e.target.closest('.go');if(g){selectLang(g.getAttribute('data-l'),+g.getAttribute('data-i'));scrollTo('#picker')}});
+
+/* ---------- Tabel ---------- */
+var fs={lang:'',cat:''};
+$('#f-lang').innerHTML='<option value="">Toate cele 14 limbi</option>'+LANGS.map(function(l){return '<option value="'+l.id+'">'+l.n+'</option>'}).join('');
+var catBtns=[{id:'',n:'Toate'}].concat(CATS.map(function(c){return {id:c.id,n:c.n}}));
+$('#f-cats').insertAdjacentHTML('beforeend',catBtns.map(function(c){return '<button type="button" class="pill" data-c="'+c.id+'" aria-pressed="'+(c.id==='')+'">'+(c.id?'<i class="dot '+(CT[c.id].place||(c.id==='valoare'?'valoare':''))+'"></i>':'')+c.n+'</button>'}).join(''));
+function tcell(items,l,ttrOn){
+  return items.map(function(it){
+    var f=it.q?'„'+it.f+'”':it.f;
+    var cls='x'+(fs.cat&&it.c===fs.cat?(it.t===0?' xtra hit':' hit'):'');
+    return '<span class="'+cls+'" lang="'+l.code+'"'+dirA(l)+'>'+f+'</span>'+(ttrOn&&it.ttr?' (<i class="tr">'+it.tr+'</i>)':'')+(it.after?' '+it.after:'');
+  }).join('; ');
+}
+function renderTable(){
+  var rows=LANGS.filter(function(l){
+    if(fs.lang&&l.id!==fs.lang)return false;
+    if(fs.cat&&!l.fig.some(function(f){return f.c===fs.cat}))return false;
+    return true;
+  });
+  $('#tbl tbody').innerHTML=rows.length?rows.map(function(l){
+    var lit=l.lit.filter(function(i){return i.t!==0});
+    var fig=l.fig.filter(function(f){return f.t!==0||(fs.cat&&f.c===fs.cat)});
+    return '<tr><th scope="row" data-label="Limbă">'+l.n+'</th><td data-label="Gestul literal">'+tcell(lit,l,1)+'</td><td data-label="Stagnarea (figurat)">'+tcell(fig,l,1)+'</td><td data-label="Ce accentuează imaginea">'+l.accent+'</td></tr>';
+  }).join(''):'<tr><td colspan="4" class="empty">Nicio limbă nu se potrivește cu filtrele alese.</td></tr>';
+  $('#tcount').textContent='Se afișează '+rows.length+' din '+LANGS.length+' limbi'+(fs.cat?'. Formele din text care lipsesc din tabelul eseului sunt marcate cu linie punctată.':'.');
+}
+$('#f-lang').addEventListener('change',function(e){fs.lang=e.target.value;renderTable()});
+$('#f-cats').addEventListener('click',function(e){
+  var b=e.target.closest('.pill');if(!b)return;fs.cat=b.getAttribute('data-c');
+  $$('#f-cats .pill').forEach(function(p){p.setAttribute('aria-pressed',p===b)});renderTable();
+});
+
+/* ---------- teme, progres, distribuire ---------- */
+var root=document.documentElement;
+$('#theme').addEventListener('click',function(){
+  var cur=root.getAttribute('data-theme')||((window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark');
+  root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+});
+var prog=$('#prog'),ticking=false;
+function onScroll(){
+  if(ticking)return;ticking=true;
+  requestAnimationFrame(function(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.transform='scaleX('+(h>0?Math.min(1,window.scrollY/h):0)+')';ticking=false;
+  });
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+var url=SHARE_URL||location.href,txt='„A călca apa” · eseu interactiv';
+$('#sh-wa').href='https://wa.me/?text='+encodeURIComponent(txt+' '+url);
+$('#sh-fb').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
+$('#sh-x').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent(url);
+$('#sh-copy').addEventListener('click',function(){
+  var t=$('#sh-copy-t');
+  function fallback(){
+    var inp=document.createElement('input');inp.readOnly=true;inp.value=url;inp.setAttribute('aria-label','Linkul paginii');
+    inp.style.cssText='flex:1 1 100%;min-height:44px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card-hi);color:var(--ink);font:500 .9rem var(--sans)';
+    $('.share').appendChild(inp);inp.focus();inp.select();t.textContent='Selectează și copiază';
+  }
+  try{navigator.clipboard.writeText(url).then(function(){t.textContent='Link copiat';setTimeout(function(){t.textContent='Copiază linkul'},2200)},fallback)}catch(err){fallback()}
+});
+
+/* ---------- pornire ---------- */
+$$('.gcard .illu, .crow .illu, .tcard .illu').forEach(watch);
+if(io){io.observe($('#scene'));io.observe($('#extra'))}
+renderScene();renderTable();onScroll();
+})();
+</script>
+
+</body></html>
